@@ -1,0 +1,23 @@
+BRG001|Beras Premium 5kg|Sembako|75000|20|1|1|2026
+BRG002|Gula Pasir 1kg|Sembako|18000|35|2|1|2026
+BRG003|Minyak Goreng 1L|Sembako|19000|30|3|1|2026
+BRG004|Mie Instan Goreng|Makanan|3500|80|4|1|2026
+BRG005|Mie Instan Kuah|Makanan|3500|75|5|1|2026
+BRG006|Kopi Sachet|Minuman|1500|100|6|1|2026
+BRG007|Teh Celup|Minuman|9000|25|7|1|2026
+BRG008|Susu Kental Manis|Minuman|12500|18|8|1|2026
+BRG009|Sabun Mandi|Kebersihan|4500|40|9|1|2026
+BRG010|Sampo Sachet|Kebersihan|1000|90|10|1|2026
+BRG011|Pasta Gigi|Kebersihan|12000|22|11|1|2026
+BRG012|Deterjen Bubuk|Kebersihan|17000|15|12|1|2026
+BRG013|Air Mineral 600ml|Minuman|3000|60|13|1|2026
+BRG014|Rokok Filter|Kebutuhan|28000|12|14|1|2026
+BRG015|Korek Api|Kebutuhan|2500|45|15|1|2026
+BRG016|Biskuit Cokelat|Makanan|8500|28|16|1|2026
+BRG017|Kecap Manis|Sembako|14000|19|17|1|2026
+BRG018|Saus Sambal|Sembako|11000|21|18|1|2026
+BRG019|Tepung Terigu|Sembako|13000|24|19|1|2026
+BRG020|Telur Ayam|Sembako|30000|10|20|1|2026
+SALAH|Baris Harga Negatif|Sembako|-5000|10|1|1|2026
+BRG123456|Kode Terlalu Panjang|Sembako|10000|10|1|1|2026
+BRG020|Data Kode Duplikat|Sembako|9999|5|1|1|2026
