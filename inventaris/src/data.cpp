@@ -1,6 +1,6 @@
 #include "data.h"
 
-#include <algorithm>
+#include <algorithm> // memanggil fungsi untuk mencari, mengolah dan mengurutkan data
 #include <cctype>
 #include <cstring>
 #include <utility>

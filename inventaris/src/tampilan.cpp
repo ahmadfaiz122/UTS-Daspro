@@ -1,6 +1,6 @@
 #include "tampilan.h"
 
-#include <algorithm>
+#include <algorithm> // memanggil fungsi untuk mencari, mengolah dan mengurutkan data
 #include <iomanip>
 #include <iostream>
 #include <limits>

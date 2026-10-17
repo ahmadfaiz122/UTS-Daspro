@@ -18,6 +18,3 @@ BRG017|Kecap Manis|Sembako|14000|19|17|1|2026
 BRG018|Saus Sambal|Sembako|11000|21|18|1|2026
 BRG019|Tepung Terigu|Sembako|13000|24|19|1|2026
 BRG020|Telur Ayam|Sembako|30000|10|20|1|2026
-SALAH|Baris Harga Negatif|Sembako|-5000|10|1|1|2026
-BRG123456|Kode Terlalu Panjang|Sembako|10000|10|1|1|2026
-BRG020|Data Kode Duplikat|Sembako|9999|5|1|1|2026

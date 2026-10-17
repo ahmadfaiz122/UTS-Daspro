@@ -1,9 +1,9 @@
 #include "berkas.h"
 
-#include <algorithm>
+#include <algorithm> // memanggil fungsi untuk mencari, mengolah dan mengurutkan data
 #include <fstream>
 #include <iostream>
-#include <sstream>
+#include <sstream> // memanggil fungsi untuk konversi string ke tipe data lain
 
 using namespace std;
 
