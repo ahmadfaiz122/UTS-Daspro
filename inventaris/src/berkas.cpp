@@ -5,12 +5,14 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
+
 namespace {
-bool angka(const std::string& teks, unsigned long long& hasil) {
+bool angka(const string& teks, unsigned long long& hasil) {
     if (teks.empty()) {
         return false;
     }
-    std::stringstream stream(teks);
+    stringstream stream(teks);
     char sisa = '\0';
     if (!(stream >> hasil) || (stream >> sisa)) {
         return false;
@@ -18,17 +20,17 @@ bool angka(const std::string& teks, unsigned long long& hasil) {
     return true;
 }
 
-bool parseBaris(const std::string& baris, Barang& barang) {
-    std::stringstream stream(baris);
-    std::string kode, nama, kategori, harga, stok, hari, bulan, tahun;
-    if (!std::getline(stream, kode, '|') || !std::getline(stream, nama, '|') ||
-        !std::getline(stream, kategori, '|') || !std::getline(stream, harga, '|') ||
-        !std::getline(stream, stok, '|') || !std::getline(stream, hari, '|') ||
-        !std::getline(stream, bulan, '|') || !std::getline(stream, tahun, '|')) {
+bool parseBaris(const string& baris, Barang& barang) {
+    stringstream stream(baris);
+    string kode, nama, kategori, harga, stok, hari, bulan, tahun;
+    if (!getline(stream, kode, '|') || !getline(stream, nama, '|') ||
+        !getline(stream, kategori, '|') || !getline(stream, harga, '|') ||
+        !getline(stream, stok, '|') || !getline(stream, hari, '|') ||
+        !getline(stream, bulan, '|') || !getline(stream, tahun, '|')) {
         return false;
     }
-    std::string sisa;
-    if (std::getline(stream, sisa)) {
+    string sisa;
+    if (getline(stream, sisa)) {
         return false;
     }
 
@@ -44,18 +46,18 @@ bool parseBaris(const std::string& baris, Barang& barang) {
         return false;
     }
     Barang hasil{};
-    hasil.harga = static_cast<std::uint32_t>(nilaiHarga);
-    hasil.stok = static_cast<std::uint16_t>(nilaiStok);
-    hasil.tglMasuk = {static_cast<std::uint8_t>(nilaiHari),
-                      static_cast<std::uint8_t>(nilaiBulan),
-                      static_cast<std::uint16_t>(nilaiTahun)};
+    hasil.harga = static_cast<uint32_t>(nilaiHarga);
+    hasil.stok = static_cast<uint16_t>(nilaiStok);
+    hasil.tglMasuk = {static_cast<uint8_t>(nilaiHari),
+                      static_cast<uint8_t>(nilaiBulan),
+                      static_cast<uint16_t>(nilaiTahun)};
     if (kode.size() >= sizeof(hasil.kode) || nama.size() >= sizeof(hasil.nama) ||
         kategori.size() >= sizeof(hasil.kategori)) {
         return false;
     }
-    std::copy(kode.begin(), kode.end(), hasil.kode);
-    std::copy(nama.begin(), nama.end(), hasil.nama);
-    std::copy(kategori.begin(), kategori.end(), hasil.kategori);
+    copy(kode.begin(), kode.end(), hasil.kode);
+    copy(nama.begin(), nama.end(), hasil.nama);
+    copy(kategori.begin(), kategori.end(), hasil.kategori);
     hasil.kode[kode.size()] = '\0';
     hasil.nama[nama.size()] = '\0';
     hasil.kategori[kategori.size()] = '\0';
@@ -67,16 +69,16 @@ bool parseBaris(const std::string& baris, Barang& barang) {
 }
 }
 
-std::size_t bacaData(const std::string& namaBerkas, Barang data[], std::size_t kapasitas) {
-    std::ifstream berkas(namaBerkas);
+size_t bacaData(const string& namaBerkas, Barang data[], size_t kapasitas) {
+    ifstream berkas(namaBerkas);
     if (!berkas) {
-        std::cerr << "Peringatan: berkas data tidak dapat dibuka: " << namaBerkas << '\n';
+        cerr << "Peringatan: berkas data tidak dapat dibuka: " << namaBerkas << '\n';
         return 0;
     }
-    std::size_t jumlah = 0;
-    std::string baris;
-    std::size_t nomorBaris = 0;
-    while (std::getline(berkas, baris)) {
+    size_t jumlah = 0;
+    string baris;
+    size_t nomorBaris = 0;
+    while (getline(berkas, baris)) {
         ++nomorBaris;
         if (baris.empty()) {
             continue;
@@ -84,12 +86,12 @@ std::size_t bacaData(const std::string& namaBerkas, Barang data[], std::size_t k
         Barang barang{};
         if (!parseBaris(baris, barang) ||
             kodeSudahAda(data, jumlah, barang.kode)) {
-            std::cerr << "Peringatan: baris " << nomorBaris
+            cerr << "Peringatan: baris " << nomorBaris
                       << " diabaikan karena tidak valid atau duplikat.\n";
             continue;
         }
         if (jumlah == kapasitas) {
-            std::cerr << "Peringatan: kapasitas data penuh; baris berikutnya diabaikan.\n";
+            cerr << "Peringatan: kapasitas data penuh; baris berikutnya diabaikan.\n";
             break;
         }
         data[jumlah++] = barang;
@@ -97,13 +99,13 @@ std::size_t bacaData(const std::string& namaBerkas, Barang data[], std::size_t k
     return jumlah;
 }
 
-bool simpanData(const std::string& namaBerkas, const Barang data[], std::size_t jumlah) {
-    std::ofstream berkas(namaBerkas);
+bool simpanData(const string& namaBerkas, const Barang data[], size_t jumlah) {
+    ofstream berkas(namaBerkas);
     if (!berkas) {
-        std::cerr << "Gagal menyimpan data ke " << namaBerkas << ".\n";
+        cerr << "Gagal menyimpan data ke " << namaBerkas << ".\n";
         return false;
     }
-    for (std::size_t i = 0; i < jumlah; ++i) {
+    for (size_t i = 0; i < jumlah; ++i) {
         berkas << data[i].kode << '|' << data[i].nama << '|' << data[i].kategori
                << '|' << data[i].harga << '|' << data[i].stok << '|'
                << static_cast<unsigned>(data[i].tglMasuk.hari) << '|'
