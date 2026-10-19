@@ -2,14 +2,25 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
 CPPFLAGS = -Iinclude
 
+ifeq ($(OS),Windows_NT)
+    EXEEXT = .exe
+    RUN = .\$(TARGET)$(EXEEXT)
+    RM = del /Q 2>NUL || exit 0
+else
+    EXEEXT =
+    RUN = ./$(TARGET)$(EXEEXT)
+    RM = rm -f
+endif
+
 TARGET = inventaris
 OBJS = src/main.o src/data.o src/berkas.o src/tampilan.o
+PROGRAM = $(TARGET)$(EXEEXT)
 
 .PHONY: all run clean
 
-all: $(TARGET)
+all: $(PROGRAM)
 
-$(TARGET): $(OBJS)
+$(PROGRAM): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 src/main.o: src/main.cpp include/berkas.h include/tampilan.h include/data.h
@@ -24,8 +35,8 @@ src/berkas.o: src/berkas.cpp include/berkas.h include/data.h
 src/tampilan.o: src/tampilan.cpp include/tampilan.h include/data.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-run: $(TARGET)
-	./$(TARGET)
+run: $(PROGRAM)
+	$(RUN)
 
 clean:
-	rm -f $(TARGET) $(OBJS)
+	$(RM) $(PROGRAM) $(OBJS)
